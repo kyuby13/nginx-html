@@ -27,6 +27,10 @@ pipeline {
             steps {
                 sh "docker container start testing${BUILD_NUMBER}"
             }
+         stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
         }        
     }
 }
