@@ -18,9 +18,9 @@ pipeline {
                 sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
             }
         } 
-        stage('Remove Docker Image in local') {
+         stage('Deploy') {
             steps {
-                sh "docker rmi $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
+                sh "docker container create --name $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER} -p 8787:80 $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
             }
         }
         stage('Clean Workspace') {
