@@ -1,7 +1,7 @@
 env.DOCKER_REGISTRY = 'yubyanime'
 env.DOCKER_IMAGE_NAME = 'testing'
 
-node('master') {
+node('Built-In Node') {
 	stage('Continous Integration') {
       echo 'CI on progress'
     }
