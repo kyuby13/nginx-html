@@ -6,7 +6,7 @@ node('main') {
       echo 'CI on progress'
     }
     stage('Git Clone from Github') {
-        git url: 'url repo project'
+        git url: 'https://github.com/kyuby13/nginx-html.git'
     }
     stage('Build Docker Image') {
         sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER} ."
