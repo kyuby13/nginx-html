@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Git Pull from Github') {
             steps {
-                echo "welcome to jenkins"
+                git credentialsId: 'GitHub', url: 'https://github.com/kyuby13/nginx-html.git'
             }
         }    
         stage('Build Docker Image') {
