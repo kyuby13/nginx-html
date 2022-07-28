@@ -6,28 +6,8 @@ pipeline {
     stages {
         stage('Git Pull from Github') {
             steps {
-                git url: 'https://github.com/kyuby13/nginx-html.git'
+                echo "welcome home"
             }
         }    
-        stage('Build Docker Image') {
-            steps {
-                sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER} ."
-            }
-        }              
-        stage('Push Docker Image to ECR') {
-            steps {
-                sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
-            }
-        } 
-        stage('Remove Docker Image in local') {
-            steps {
-                sh "docker rmi $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
-            }
-        }
-        stage('Clean Workspace') {
-            steps {
-                cleanWs()
-            }
-        }        
-    }
-}
+               
+
