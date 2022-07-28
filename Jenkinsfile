@@ -18,14 +18,14 @@ pipeline {
                 sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
             }
         } 
-         stage('Deploy') {
+         stage('Create') {
             steps {
                 sh "docker container create --name testing -p 8787:80 $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
             }
         }
-        stage('Clean Workspace') {
+        stage('Running') {
             steps {
-                cleanWs()
+                sh "docker container start testing"
             }
         }        
     }
