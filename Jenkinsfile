@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Running') {
             steps {
-                sh "docker container start testing"
+                sh "docker container start testing${BUILD_NUMBER}"
             }
         }        
     }
