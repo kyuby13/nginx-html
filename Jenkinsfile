@@ -23,7 +23,7 @@ pipeline {
                 sh "docker container create --name testing${BUILD_NUMBER} -p 8787:80 $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
             }
         }
-         stage('Stop') {
+         stage('Delete') {
             steps {
                 sh "docker ps | grep testing | awk '{print $1}' | xargs docker stop"
                 sh "docker system prune -af"
