@@ -25,7 +25,7 @@ pipeline {
         }
          stage('Delete') {
             steps {
-                sh "docker ps | grep testing | awk '{print $1}' | xargs docker stop"
+                sh "docker container stop $(docker container ls -q --filter ancestor=testing)"
                 sh "docker system prune -af"
             }
         }
