@@ -25,7 +25,7 @@ pipeline {
         }
          stage('Delete') {
             steps {
-                sh "docker container start testing${BUILD_NUMBER}-1"
+                sh ""
             }
         }
          
