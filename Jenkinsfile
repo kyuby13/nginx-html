@@ -18,17 +18,18 @@ pipeline {
                 sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
             }
         } 
-         stage('Create') {
-            steps {
-                sh "docker container create --name testing${BUILD_NUMBER} -p 8787:80 $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
-            }
-        }
-         stage('Delete') {
+        stage('Delete') {
             steps {
                 sh "docker ps -f name=testing -q | xargs --no-run-if-empty docker container stop"
                 sh "sh 'docker container ls -a -fname=testing -q | xargs -r docker container rm'"
             }
         }
+         stage('Create') {
+            steps {
+                sh "docker container create --name testing${BUILD_NUMBER} -p 8787:80 $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
+            }
+        }
+         
         stage('Deploy') {
             steps {
                 sh "docker container start testing${BUILD_NUMBER}"
