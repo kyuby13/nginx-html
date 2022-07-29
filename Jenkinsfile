@@ -25,7 +25,8 @@ pipeline {
         }
          stage('Stop') {
             steps {
-                sh "docker container stop testing${BUILD_NUMBER}"
+                sh "docker ps | grep testing | awk '{print $1}' | xargs docker stop"
+                sh "docker system prune -af"
             }
         }
         stage('Deploy') {
