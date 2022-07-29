@@ -26,7 +26,7 @@ pipeline {
          stage('Delete') {
             steps {
                 sh "docker ps -f name=testing -q | xargs --no-run-if-empty docker container stop"
-                sh "docker system prune -af"
+                sh "sh 'docker container ls -a -fname=testing -q | xargs -r docker container rm'"
             }
         }
         stage('Deploy') {
