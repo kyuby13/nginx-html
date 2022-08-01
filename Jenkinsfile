@@ -20,7 +20,7 @@ pipeline {
         } 
         stage('Login') {
             steps {
-                 sshagent(credentials : ['jenkinstodocker'])
+                 sshagent(credentials : ['docker'])
             }
         } 
          stage('Pull Docker Image') {
