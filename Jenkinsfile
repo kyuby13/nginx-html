@@ -33,12 +33,7 @@ pipeline {
                 sh "docker container create --name testing${BUILD_NUMBER} -p 8787:80 $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
             }
         }
-         stage('Delete') {
-            steps {
-                sh ""
-            }
-        }
-         
+          
         stage('Deploy') {
             steps {
                 sh "docker container start testing${BUILD_NUMBER}"
