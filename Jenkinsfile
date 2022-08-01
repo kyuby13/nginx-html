@@ -20,7 +20,7 @@ pipeline {
         } 
         stage('login server') {         
             steps{
-            sshagent(credentials:['jenkinstodocker'])
+            sshagent(credentials:['docker'])
                 {sh 'ssh  -o StrictHostKeyChecking=no  root@54.151.178.26 uptime "whoami"'}        
                 echo "success lgoin"         
             }
