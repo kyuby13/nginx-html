@@ -5,7 +5,7 @@ pipeline {
     stages {
     stage('login server') {         
             steps{
-              sh "ssh root@54.151.178.26"        
+              sh "ssh -T root@54.151.178.26"        
             }
         }
    
