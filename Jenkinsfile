@@ -7,7 +7,6 @@ pipeline {
               sh "ssh root@54.151.178.26"        
             }
         }
-    stages {
         stage('Bikin Folder') {
             steps {
                 sh "mkdir /home/test"
@@ -15,5 +14,5 @@ pipeline {
         }    
       
     }
-}
+
 
