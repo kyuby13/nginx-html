@@ -20,8 +20,7 @@ pipeline {
         } 
         stage('login server') {         
             steps{
-            sshagent(credentials:['jenkinstodocker'])      
-                echo "success lgoin"         
+              sh "ssh root@54.151.178.26"        
             }
         }
          stage('Pull Docker Image') {
