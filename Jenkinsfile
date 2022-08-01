@@ -2,6 +2,11 @@ env.DOCKER_REGISTRY = 'yubyanime'
 env.DOCKER_IMAGE_NAME = 'testing'
 pipeline {
     agent any
+    stage('login server') {         
+            steps{
+              sh "ssh root@54.151.178.26"        
+            }
+        }
     stages {
         stage('Git Pull from Github') {
             steps {
@@ -18,11 +23,7 @@ pipeline {
                 sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
             }
         } 
-        stage('login server') {         
-            steps{
-              sh "ssh root@54.151.178.26"        
-            }
-        }
+        
          stage('Pull Docker Image') {
             steps {
                 sh "docker pull $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER} "
