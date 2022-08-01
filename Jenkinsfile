@@ -18,9 +18,11 @@ pipeline {
                 sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
             }
         } 
-        stage('Login') {
-            steps {
-                sh "ssh root@54.151.178.26"
+        stage('login server') {         
+            steps{
+            sshagent(credentials:['jenkinstodocker'])
+                {sh 'ssh  -o StrictHostKeyChecking=no  root@54.151.178.26 uptime "whoami"'}        
+                echo "success lgoin"         
             }
         }
          stage('Pull Docker Image') {
