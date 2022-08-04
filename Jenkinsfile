@@ -27,7 +27,7 @@ pipeline {
           
         stage('Deploy') {
             steps {
-                sh "docker ps | grep nginx | xargs docker stop"
+                sh "docker ps | grep testing | xargs docker stop"
                 sh "docker container start testing${BUILD_NUMBER}"
                 sh "docker system prune -af"
             }
