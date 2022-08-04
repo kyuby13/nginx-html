@@ -28,6 +28,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh "docker container start testing${BUILD_NUMBER}"
+                sh "docker system prune -af"
             }
         }
          stage('Clean Workspace') {
