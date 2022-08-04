@@ -21,7 +21,7 @@ pipeline {
         
          stage('Cek') {
             steps {
-                sh "docker ps | grep testing | xargs docker stop"
+                sh "docker ps -f name=testing -q | xargs --no-run-if-empty docker container stop"
             }
         }
        
