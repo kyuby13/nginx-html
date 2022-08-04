@@ -19,6 +19,13 @@ pipeline {
             }
         } 
         
+         stage('Cek') {
+            steps {
+                sh " sh "docker ps | grep testing | xargs docker stop""
+            }
+        }
+       
+        
          stage('Create') {
             steps {
                 sh "docker container create --name testing${BUILD_NUMBER} -p 8787:80 $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
@@ -27,7 +34,6 @@ pipeline {
           
         stage('Deploy') {
             steps {
-                sh "docker ps | grep testing | xargs docker stop"
                 sh "docker container start testing${BUILD_NUMBER}"
                 sh "docker system prune -af"
             }
