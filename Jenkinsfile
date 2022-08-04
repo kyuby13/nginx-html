@@ -21,7 +21,7 @@ pipeline {
         
          stage('Cek') {
             steps {
-                sh " sh "docker ps | grep testing | xargs docker stop""
+                sh "docker ps | grep testing | xargs docker stop"
             }
         }
        
